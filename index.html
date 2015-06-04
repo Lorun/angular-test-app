@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="customer">
+<head>
+    <meta charset="utf-8">
+    <title>Customers App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="css/kube.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div class="wrap" ng-controller="MainCtrl">
+    <nav class="units-row">
+        <span class="btn-group">
+            <a href="#/list" class="btn">Customer List</a>
+            <a href="#/create" class="btn btn-green">Create Customer</a>
+        </span>
+    </nav>
+    <div ng-view></div>
+</div>
+<footer class="text-centered small">
+    &copy; 2015, Ruslan Lobarev (Customers test App)
+</footer>
+
+<script src="vendor/angular/angular.min.js"></script>
+<script src="vendor/angular/angular-route.min.js"></script>
+<script src="vendor/angular/angular-resource.min.js"></script>
+<script src="app.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+</body>
+</html>

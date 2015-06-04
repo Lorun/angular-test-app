@@ -1,0 +1,39 @@
+<h1>{{["Create customer","Edit Customer: "+customer.name][(customer.id>0)+0]}}</h1>
+<form name="editForm" class="forms">
+    <label>
+        Name
+        <input type="text" name="name" ng-model="customer.name" required class="width-50" ng-class="{'input-error': editForm.name.$invalid}">
+    </label>
+    <label>
+        Email
+        <input type="text" name="email" ng-model="customer.email" required class="width-50" ng-class="{'input-error': editForm.email.$invalid}">
+    </label>
+    <label>
+        Telephone
+        <input type="text" name="telephone" ng-model="customer.telephone" required class="width-50" ng-class="{'input-error': editForm.telephone.$invalid}">
+    </label>
+    <label>
+        Address
+        <input type="text" name="address" ng-model="customer.address" class="width-50">
+    </label>
+    <label>
+        Street
+        <input type="text" name="street" ng-model="customer.street" class="width-50">
+    </label>
+    <label>
+        City
+        <input type="text" name="city" ng-model="customer.city" class="width-50">
+    </label>
+    <label>
+        State
+        <input type="text" name="state" ng-model="customer.state" class="width-50">
+    </label>
+    <label>
+        Zip
+        <input type="text" name="zip" ng-model="customer.zip" class="width-50">
+    </label>
+    <p>
+        <button class="btn btn-blue" ng-disabled="editForm.$invalid||editForm.$pristine" ng-click="save()">Save</button>
+        <a href="#/list" class="btn btn-green">Cancel</a>
+    </p>
+</form>

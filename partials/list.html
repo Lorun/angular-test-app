@@ -1,0 +1,11 @@
+<h1>Customer List</h1>
+<ul class="list-flat">
+    <li ng-repeat="item in customers" class="group">
+        <span class="label">{{item.id}}</span>&nbsp;
+        <strong>{{item.name}}</strong>, <small><a href="mailto:{{item.email}}">{{item.email}}</a></small>
+        <div class="right">
+            <a href="#/edit/{{item.id}}" class="btn btn-small btn-green">Edit</a>
+            <button class="btn btn-small btn-red" ng-click="deleteItem(item)">Delete</button>
+        </div>
+    </li>
+</ul>

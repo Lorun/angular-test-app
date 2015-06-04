@@ -1,0 +1,19 @@
+.wrap {
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.list-flat {
+    border-top: 1px solid #eee;
+}
+.list-flat li {
+    border-bottom: 1px solid #eee;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+footer {
+    background-color: #eee;
+    padding: 20px;
+}
