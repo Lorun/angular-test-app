@@ -28,7 +28,7 @@ switch ($method) {
 
         $f = scandir('../data');
         $_id = (int)substr(array_pop($f), 0, -5);
-        $new_id = '0'.($_id + 1);
+        $new_id = $_id + 1;
 
         $data = json_decode($data);
         $data->id = $new_id;
