@@ -2,13 +2,16 @@
 <form name="editForm" class="forms">
     <label>
         Name
-        <input type="text" name="name" ng-model="customer.name" required class="width-50" ng-class="{'input-error': editForm.name.$invalid}">
+        <input type="text" name="name"
+                ng-model="customer.name"
+                ng-class="{'input-error': editForm.name.$invalid, 'input-success': editForm.name.$valid}"
+                required class="width-50">
     </label>
     <label>
         Email <span class="error" ng-show="editForm.email.$error.unique">Email already in use</span>
         <input type="email" name="email" 
                 ng-model="customer.email"
-                ng-class="{'input-error': editForm.email.$invalid}"
+                ng-class="{'input-error': editForm.email.$invalid, 'input-success': editForm.email.$valid}"
                 data-ng-unique="{key: customer.id, property: 'email'}"
                 required class="width-50">
     </label>
@@ -17,7 +20,7 @@
         <input type="tel" name="telephone" 
                 ng-model="customer.telephone"
                 ng-pattern="/^\+?\d{1,2}?[- ]?\(?\d{3}?\)?[- ]?\d{3}[- ]?\d{4}$/"
-                ng-class="{'input-error': editForm.telephone.$invalid}"
+                ng-class="{'input-error': editForm.telephone.$invalid, 'input-success': editForm.telephone.$valid}"
                 data-ng-unique="{key: customer.id, property: 'telephone'}"
                 required class="width-50" placeholder="+XX (XXX) XXX-XXXX">
     </label>
@@ -39,10 +42,10 @@
     </label>
     <label>
         Zip
-        <input type="number" name="zip" ng-model="customer.zip" class="width-50" ng-class="{'input-error': editForm.zip.$invalid}">
+        <input type="number" name="zip" ng-model="customer.zip" class="width-25" ng-class="{'input-error': editForm.zip.$invalid}">
     </label>
     <p>
-        <button class="btn btn-blue" ng-disabled="editForm.$invalid||editForm.$pristine" ng-click="save()">Save</button>
-        <a href="#/list" class="btn btn-green">Cancel</a>
+        <button class="btn btn-big btn-blue" ng-disabled="editForm.$invalid||editForm.$pristine" ng-click="save()">Save</button>
+        <a href="#/list" class="btn btn-big btn-green">Cancel</a>
     </p>
 </form>
