@@ -4,7 +4,7 @@ $params = array('id', 'action');
 
 $url = substr($_SERVER['REQUEST_URI'],strrpos($_SERVER['SCRIPT_NAME'],'/')+1);
 
-list($id,$action) = explode('/',$url, 2);
+list($id,$action) = explode('/',$url);
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -14,19 +14,13 @@ switch ($method) {
     case 'GET': // get list and item customer
         if($id == 'list')
         {
-            $f = scandir('../data');
-            foreach($f as $file)
-            {
-                if($file != '.' && $file != '..')
-                {
-                    $result[] = json_decode(file_get_contents('../data/'.$file));
-                }
-            }
+            $result = getCustomers();
         }
         else
         {
             $result = json_decode(file_get_contents('../data/'.$id.'.json'));
         }
+            
         break;
 
     case 'PUT': // create new customer
@@ -49,20 +43,52 @@ switch ($method) {
 
     case 'POST': // edit customer
         $data = file_get_contents('php://input');
+        $data_arr = json_decode($data);
 
-        if($id != '')
+        if($action == 'checkUnique' && isset($data_arr->property))
         {
-            $fp = fopen("../data/".$id.".json", "w");
-            fwrite($fp, $data);
-            fclose($fp);
-            $result = json_decode($data);
+            
+
+            $result['status'] = true;
+            $customers = getCustomers();
+            foreach ($customers as $item)
+            {
+                if ($item->id != $id && $item->{$data_arr->property} == $data_arr->value)
+                    $result['status'] = false;
+            }
         }
+        else
+        {
+            if($id != '' && $id != 0)
+            {
+                $fp = fopen("../data/".$id.".json", "w");
+                fwrite($fp, $data);
+                fclose($fp);
+                $result = json_decode($data);
+            }
+        }
+
         break;
 
     case 'DELETE': // delete customer
         unlink('../data/'.$id.'.json');
         $result['success'] = true;
         break;
+}
+
+function getCustomers()
+{
+    $arr = array();
+    $f = scandir('../data');
+
+    foreach($f as $file)
+    {
+        if($file != '.' && $file != '..')
+        {
+            $arr[] = json_decode(file_get_contents('../data/'.$file));
+        }
+    }
+    return $arr;
 }
 
 echo json_encode($result);

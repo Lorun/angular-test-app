@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('customer', ['ngRoute', 'customer.services', 'customer.controllers'])
+angular.module('customer', ['ngRoute', 'customer.services', 'customer.controllers', 'customer.directives'])
 
 .config(['$routeProvider', function($routeProvider) {
         $routeProvider

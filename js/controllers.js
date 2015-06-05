@@ -28,7 +28,7 @@ angular.module('customer.controllers', [])
 }])
 
 .controller('createCtrl', ['$scope', 'Customer', '$routeParams', '$location', function($scope, Customer, $routeParams, $location) {
-    $scope.customer = new Customer();
+    $scope.customer = Customer();
 
     $scope.save = function() {
         Customer.create($scope.customer, function(){ $location.path('/list'); });

@@ -5,12 +5,21 @@
         <input type="text" name="name" ng-model="customer.name" required class="width-50" ng-class="{'input-error': editForm.name.$invalid}">
     </label>
     <label>
-        Email
-        <input type="text" name="email" ng-model="customer.email" required class="width-50" ng-class="{'input-error': editForm.email.$invalid}">
+        Email <span class="error" ng-show="editForm.email.$error.unique">Email already in use</span>
+        <input type="email" name="email" 
+                ng-model="customer.email"
+                ng-class="{'input-error': editForm.email.$invalid}"
+                data-ng-unique="{key: customer.id, property: 'email'}"
+                required class="width-50">
     </label>
     <label>
-        Telephone
-        <input type="text" name="telephone" ng-model="customer.telephone" required class="width-50" ng-class="{'input-error': editForm.telephone.$invalid}">
+        Telephone <span class="error" ng-show="editForm.telephone.$error.unique">Telephone number already in use</span>
+        <input type="tel" name="telephone" 
+                ng-model="customer.telephone"
+                ng-pattern="/^\+?\d{1,2}?[- ]?\(?\d{3}?\)?[- ]?\d{3}[- ]?\d{4}$/"
+                ng-class="{'input-error': editForm.telephone.$invalid}"
+                data-ng-unique="{key: customer.id, property: 'telephone'}"
+                required class="width-50" placeholder="+XX (XXX) XXX-XXXX">
     </label>
     <label>
         Address
@@ -30,7 +39,7 @@
     </label>
     <label>
         Zip
-        <input type="text" name="zip" ng-model="customer.zip" class="width-50">
+        <input type="number" name="zip" ng-model="customer.zip" class="width-50" ng-class="{'input-error': editForm.zip.$invalid}">
     </label>
     <p>
         <button class="btn btn-blue" ng-disabled="editForm.$invalid||editForm.$pristine" ng-click="save()">Save</button>
