@@ -1,7 +1,7 @@
 <h1>{{["Create customer","Edit Customer: "+customer.name][(customer.id>0)+0]}}</h1>
 <form name="editForm" class="forms">
     <label>
-        Name
+        First Name
         <input type="text" name="name"
                 ng-model="customer.name"
                 ng-class="{'input-error': editForm.name.$invalid, 'input-success': editForm.name.$valid}"
